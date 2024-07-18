@@ -17,13 +17,13 @@ class NumeroOrden extends FModal {
                     id: 0,
                     refaccion_id: null,
                     numero_orden_id: null,
+                    cantidad: '',
                 },
                 guia_devolucion: {},
                 casos: {},
                 numero_orden: {
                     id: 0,
                     numero: '',
-                    cantidad: '',
                     casos_id: null,
                     guia_devolucion_id: null,
                 },
@@ -37,6 +37,7 @@ class NumeroOrden extends FModal {
                         id: 0,
                         refaccion_id: null,
                         numero_orden_id: null,
+                        cantidad: '',
                     },
                     numero_orden: {
                         id: 0,
@@ -90,7 +91,7 @@ class NumeroOrden extends FModal {
                         numero_casos: { name: 'Numero Casos' },
                         numero_guia: { name: 'Numero Guia' },
                         numero_parte: { name: 'Numero Parte' },
-                        cantidad:  { name:  'Cantidad'}
+                        cantidad: { name: 'Cantidad' }
                     }}
                     onLoadClose={this.loadClose}
                 />
@@ -107,11 +108,13 @@ class NumeroOrden extends FModal {
                         label={'Numero Orden'}
                         buscar_name={'numero_orden'}
                         onChange={(id) => { this.changedId('item', item, 'numero_orden_id', id) }}
-                        onForm={(data, btn) => {this.setState({
-                            resquest: {
-                                numero_orden:[]
-                            }
-                        }); this.btnClose(btn); this.onForm(data, 'numero_orden', clone.numero_orden) }}
+                        onForm={(data, btn) => {
+                            this.setState({
+                                resquest: {
+                                    numero_orden: []
+                                }
+                            }); this.btnClose(btn); this.onForm(data, 'numero_orden', clone.numero_orden)
+                        }}
                         item={numero_orden}
                         event={['add', 'edit', 'delete', 'show']}
                         value={item.numero_orden_id}
@@ -123,7 +126,7 @@ class NumeroOrden extends FModal {
                         onRequest={(error) => {
                             this.setState({
                                 resquest: {
-                                    numero_orden:error
+                                    numero_orden: error
                                 }
                             })
                         }}
@@ -140,17 +143,7 @@ class NumeroOrden extends FModal {
                             disabled={modal.disabled}
                             validate={resquest?.numero_orden?.numero}
                         />
-                        <FText
-                            label='Cantidad'
-                            type='number'
-                            value={numero_orden.cantidad}
-                            name='cantidad'
-                            onChange={(e) => this._changed(e, 'numero_orden')}
-                            placeholder='cantidad'
-                            autoFocus
-                            disabled={modal.disabled}
-                            validate={resquest?.numero_orden?.cantidad}
-                        />
+
                         <FSelectAjax
                             basetUri={'/casos'}
                             buscar_columna={'numero'}
@@ -197,9 +190,9 @@ class NumeroOrden extends FModal {
                         label={'Refaccion'}
                         buscar_name={'refaccion'}
                         onChange={(id) => { this.changedId('item', item, 'refaccion_id', id) }}
-                        onForm={(data, btn) => { 
+                        onForm={(data, btn) => {
                             this.btnClose(btn);
-                            this.onForm(data, 'refaccion', clone.refaccion) 
+                            this.onForm(data, 'refaccion', clone.refaccion)
                         }}
                         item={refaccion}
                         event={['add', 'edit', 'delete', 'show']}
@@ -212,7 +205,7 @@ class NumeroOrden extends FModal {
                         onRequest={(error) => {
                             this.setState({
                                 resquest: {
-                                    refaccion:error
+                                    refaccion: error
                                 }
                             })
                         }}
@@ -241,6 +234,17 @@ class NumeroOrden extends FModal {
                             validate={resquest?.refaccion?.descripcion}
                         />
                     </FSelectAjax>
+                    <FText
+                        label='Cantidad'
+                        type='number'
+                        value={item.cantidad}
+                        name='cantidad'
+                        onChange={this.changed}
+                        placeholder='cantidad'
+                        autoFocus
+                        disabled={modal.disabled}
+                        validate={resquest?.cantidad}
+                    />
                 </FForm>
 
 
