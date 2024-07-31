@@ -94,13 +94,13 @@ class FHMenu extends React.Component {
                 name: 'Horas extras',
                 icon: 'bi-clipboard2-fill',
                 active: false
-            },
+            }/*,
             {
                 uri: '/empleados',
                 name: 'Empleados',
                 icon: 'bi-person-lines-fill',
                 active: false
-            },
+            }*/,
             {
                 uri: '/clientes',
                 name: 'Clientes',
